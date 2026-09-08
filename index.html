@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Our Story ❤️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Marcellus&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- grain overlay -->
+<div class="grain"></div>
+
+<!-- floating hearts / particle canvas layer used across sections -->
+<canvas id="particle-canvas"></canvas>
+
+<!-- ============================= -->
+<!-- CINEMATIC INTRO                -->
+<!-- ============================= -->
+<section id="intro" class="intro">
+  <div class="intro-bg">
+    <div class="stars"></div>
+    <div class="light-rays"></div>
+  </div>
+  <div class="intro-content">
+    <p class="intro-line intro-line-1">Hey You… ❤️</p>
+    <p class="intro-line intro-line-2">I made a little surprise just for you,<br>for the person who means more to me than words can ever explain. ❤️</p>
+    <button id="enter-btn" class="glow-btn">
+      <span>Enter Our Love Story</span> ❤️
+    </button>
+  </div>
+  <div id="heart-burst" class="heart-burst"></div>
+</section>
+
+<!-- ============================= -->
+<!-- NAVIGATION                     -->
+<!-- ============================= -->
+<nav id="main-nav" class="main-nav">
+  <div class="nav-inner glass">
+    <a href="#hero" class="nav-logo">Us</a>
+    <ul class="nav-links">
+      <li><a href="#hero" data-nav>Home</a></li>
+      <li><a href="#gallery" data-nav>Memories</a></li>
+      <li><a href="#video-memories" data-nav>Videos</a></li>
+      <li><a href="#our-story" data-nav>Our Story</a></li>
+      <li><a href="#love" data-nav>Love</a></li>
+      <li><a href="#letter" data-nav>Letter</a></li>
+      <li><a href="#surprise" data-nav>Surprise</a></li>
+    </ul>
+    <button id="hamburger" class="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div id="mobile-menu" class="mobile-menu">
+    <a href="#hero" data-nav>Home</a>
+    <a href="#gallery" data-nav>Memories</a>
+    <a href="#video-memories" data-nav>Videos</a>
+    <a href="#our-story" data-nav>Our Story</a>
+    <a href="#love" data-nav>Love</a>
+    <a href="#letter" data-nav>Letter</a>
+    <a href="#surprise" data-nav>Surprise</a>
+  </div>
+</nav>
+
+<main id="main-content">
+
+  <!-- ============================= -->
+  <!-- HERO BIRTHDAY SECTION           -->
+  <!-- ============================= -->
+  <section id="hero" class="hero">
+    <div class="hero-media">
+      <img src="assets/hero.jpg" alt="" class="hero-img ken-burns" onerror="this.parentElement.classList.add('img-fallback')">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-particles" data-particles="hearts"></div>
+    <div class="hero-content">
+      <p class="reveal-line" data-reveal>Today isn't just another day…</p>
+      <p class="reveal-line" data-reveal>It's the day<br><span class="accent">My favorite person</span> Was born.</p>
+      <h1 class="hero-title" data-reveal>HAPPY BIRTHDAY<br><span>My Man ❤️</span></h1>
+      <p class="scroll-hint" data-reveal>Scroll down… I have something to show you.</p>
+    </div>
+    <div class="scroll-chevron" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- CINEMATIC VIDEO HERO            -->
+  <!-- ============================= -->
+  <section id="video-hero" class="video-hero">
+    <p class="section-kicker fade-up">A little piece of us Mama❤️</p>
+    <div class="video-frame fade-scale">
+      <video
+        id="hero-video"
+        class="hero-video"
+        src="assets/v4.mp4"
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="assets/hero.jpg"
+      ></video>
+      <div class="video-overlay"></div>
+      <div class="custom-video-controls">
+        <button class="vc-play" id="hero-play" aria-label="Play video">▶</button>
+        <div class="vc-progress-track" id="hero-progress-track">
+          <div class="vc-progress-fill" id="hero-progress-fill"></div>
+        </div>
+        <button class="vc-mute" id="hero-mute" aria-label="Mute video">🔊</button>
+        <input type="range" id="hero-volume" class="vc-volume" min="0" max="1" step="0.05" value="1">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- MEMORY GALLERY                  -->
+  <!-- ============================= -->
+  <section id="gallery" class="gallery-section">
+    <h2 class="section-title fade-up">Our Little Moments 📸</h2>
+    <div class="masonry" id="masonry-grid">
+      <!-- populated with figure.masonry-item by script.js -->
+    </div>
+  </section>
+
+  <!-- lightbox -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <div class="lightbox-backdrop"></div>
+    <button class="lb-close" id="lb-close" aria-label="Close">✕</button>
+    <button class="lb-prev" id="lb-prev" aria-label="Previous photo">‹</button>
+    <div class="lightbox-stage">
+      <img id="lb-img" src="" alt="">
+      <p id="lb-caption" class="lb-caption"></p>
+      <p id="lb-counter" class="lb-counter"></p>
+    </div>
+    <button class="lb-next" id="lb-next" aria-label="Next photo">›</button>
+  </div>
+
+  <!-- ============================= -->
+  <!-- PHOTO + TEXT STORY CARDS         -->
+  <!-- ============================= -->
+  <section id="story-cards" class="story-cards">
+    <div class="story-row" data-anim="left">
+      <div class="story-media"><img src="assets/p9.jpeg" alt="" loading="lazy" onerror="this.parentElement.classList.add('img-fallback')"></div>
+      <div class="story-text"><p>Some moments are small…</p></div>
+    </div>
+    <div class="story-row reverse" data-anim="right">
+      <div class="story-text"><p>…But somehow become the memories we never forget.</p></div>
+      <div class="story-media"><img src="assets/p6.jpeg" alt="" loading="lazy" onerror="this.parentElement.classList.add('img-fallback')"></div>
+    </div>
+    <div class="story-row" data-anim="left">
+      <div class="story-text"><p>Every laugh…</p></div>
+      <div class="story-media"><img src="assets/p8.jpeg" alt="" loading="lazy" onerror="this.parentElement.classList.add('img-fallback')"></div>
+    </div>
+    <div class="story-row reverse" data-anim="right">
+      <div class="story-media"><img src="assets/p5.jpeg" alt="" loading="lazy" onerror="this.parentElement.classList.add('img-fallback')"></div>
+      <div class="story-text"><p>Every random conversation…</p></div>
+    </div>
+    <div class="story-row" data-anim="left">
+      <div class="story-media"><img src="assets/p15.jpeg" alt="" loading="lazy" onerror="this.parentElement.classList.add('img-fallback')"></div>
+      <div class="story-text"><p>…Every little moment with you.</p></div>
+    </div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- OUR STORY TIMELINE               -->
+  <!-- ============================= -->
+  <section id="our-story" class="timeline-section">
+    <h2 class="section-title fade-up">OUR STORY ❤️</h2>
+    <div class="timeline" id="timeline">
+      <!-- populated by script.js from CONFIG.timeline -->
+    </div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- VIDEO MEMORIES SECTION           -->
+  <!-- ============================= -->
+  <section id="video-memories" class="video-memories">
+    <h2 class="section-title fade-up">Little Videos, Big Memories 🎬</h2>
+    <div class="video-cards" id="video-cards">
+      <!-- populated by script.js -->
+    </div>
+  </section>
+
+  <!-- video modal -->
+  <div id="video-modal" class="video-modal" aria-hidden="true">
+    <div class="vm-backdrop"></div>
+    <button class="vm-close" id="vm-close" aria-label="Close video">✕</button>
+    <div class="vm-stage">
+      <video id="vm-video" playsinline></video>
+      <div class="custom-video-controls">
+        <button class="vc-play" id="vm-play" aria-label="Play video">▶</button>
+        <div class="vc-progress-track" id="vm-progress-track">
+          <div class="vc-progress-fill" id="vm-progress-fill"></div>
+        </div>
+        <button class="vc-mute" id="vm-mute" aria-label="Mute video">🔊</button>
+        <input type="range" id="vm-volume" class="vc-volume" min="0" max="1" step="0.05" value="1">
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================= -->
+  <!-- POLAROID / SCRAPBOOK              -->
+  <!-- ============================= -->
+  <section id="scrapbook" class="scrapbook-section">
+    <h2 class="section-title fade-up">Pieces of Us ❤️</h2>
+    <div class="scrapbook" id="scrapbook-grid">
+      <!-- populated by script.js -->
+    </div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- REASONS I LOVE YOU                -->
+  <!-- ============================= -->
+  <section id="love" class="love-section">
+    <h2 class="section-title fade-up">Why You Are So Special To Me ❤️</h2>
+    <div class="love-cards" id="love-cards">
+      <!-- populated by script.js -->
+    </div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- SECRET LETTER                     -->
+  <!-- ============================= -->
+  <section id="letter" class="letter-section">
+    <h2 class="section-title fade-up">A Letter I Wanted You To Read ❤️</h2>
+    <div class="envelope-wrap">
+      <div class="envelope" id="envelope">
+        <div class="envelope-back"></div>
+        <div class="envelope-flap"></div>
+        <div class="envelope-front"></div>
+        <div class="envelope-letter" id="envelope-letter">
+          <!-- ===== LOVE LETTER — EDIT HERE ===== -->
+          <p>My Love,</p>
+          <p>There are so many things I want to tell you...</p>
+          <p>You have become such a beautiful part of my life.</p>
+          <p>Thank you for every conversation,<br>
+          every laugh,<br>
+          every memory,<br>
+          and every little moment.</p>
+          <p>I hope this birthday reminds you<br>
+          how loved and special you really are.</p>
+          <p>Happy Birthday, Mama.</p>
+          <p>Forever yours,<br><span id="letter-signature">my love</span> ❤️</p>
+          <!-- ===== END LOVE LETTER ===== -->
+        </div>
+      </div>
+      <button id="open-letter-btn" class="glow-btn outline">Open My Heart</button>
+    </div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- FINAL SURPRISE                     -->
+  <!-- ============================= -->
+  <section id="surprise" class="surprise-section">
+    <div class="surprise-pre" id="surprise-pre">
+      <p class="fade-up">Wait… there's one last surprise.</p>
+      <p class="fade-up">Are you ready?</p>
+      <button id="surprise-btn" class="glow-btn">Open Your Final Surprise My Love🎁</button>
+    </div>
+
+    <div class="surprise-stage" id="surprise-stage" aria-hidden="true">
+      <div class="heartbeat-glow" id="heartbeat-glow"></div>
+      <div class="big-heart" id="big-heart">❤️</div>
+      <canvas id="confetti-canvas"></canvas>
+      <div class="surprise-photos" id="surprise-photos"></div>
+      <div class="surprise-final-text" id="surprise-final-text">
+        <p data-line>HAPPY BIRTHDAY, My Everything ❤️</p>
+        <p data-line>You are one of the most beautiful<br>Chapters of my Life.</p>
+        <p data-line>Today is your birthday,<br>but honestly…</p>
+        <p data-line>I'm the lucky one<br>because I get to have you. ❤️</p>
+        <p data-line class="forever">Forever &amp; Always ♾️</p>
+      </div>
+    </div>
+  </section>
+
+ 
+  <!-- FINAL PHOTO COLLAGE  -->
+  <!-- ============================= -->
+  <!-- <section id="final-collage" class="final-collage">
+    <div class="collage-grid" id="collage-grid"> -->
+      <!-- populated by script.js -->
+    <!-- </div>
+    <p class="collage-caption fade-up">And this is only the beginning… ❤️</p>
+    <footer class="site-footer">
+      <p>Made with all my heart, by <span id="footer-name">[MY NAME]</span></p>
+    </footer>
+  </section> -->
+
+</main>
+
+<!-- ============================= -->
+<!-- MUSIC PLAYER                         -->
+<!-- ============================= -->
+<div id="music-player" class="music-player glass">
+  <button id="music-toggle" class="music-toggle" aria-label="Play music">
+    <span class="music-icon">
+      <span></span><span></span><span></span>
+    </span>
+  </button>
+  <input type="range" id="music-volume" class="music-volume" min="0" max="1" step="0.05" value="0.5">
+  <button id="music-mute" class="music-mute" aria-label="Mute music">🔊</button>
+</div>
+<audio id="bg-music" src="assets/ReelAudio-61991.mp3" loop preload="none"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
